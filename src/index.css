@@ -1,0 +1,131 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap');
+
+/* ─── Design tokens ─────────────────────────────── */
+:root {
+  --blue:   #1B3D7A;
+  --red:    #CC2229;
+  --navy:   #0D1B3E;
+  --green:  #28A745;
+  --body:   #333333;
+  --muted:  #666666;
+  --light:  #F7F8FA;
+  --border: #e4ecf4;
+}
+
+/* ─── Reset ─────────────────────────────────────── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Poppins',sans-serif;
+  color:var(--body);
+  background:#fff;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:inherit}
+img{max-width:100%;display:block}
+button{cursor:pointer}
+
+/* ─── Container ─────────────────────────────────── */
+.container{max-width:1200px;margin:0 auto;padding:0 20px}
+
+/* ─── Buttons ───────────────────────────────────── */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:6px;
+  padding:10px 24px;border-radius:5px;font-weight:600;font-size:14px;
+  cursor:pointer;text-decoration:none;transition:all .2s ease;
+  border:2px solid transparent;font-family:'Poppins',sans-serif;
+  line-height:1;
+}
+.btn-red{background:var(--red);color:#fff;border-color:var(--red)}
+.btn-red:hover{background:#aa1a20;border-color:#aa1a20}
+.btn-blue{background:var(--blue);color:#fff;border-color:var(--blue)}
+.btn-blue:hover{background:#142d5e;border-color:#142d5e}
+.btn-outline-white{background:transparent;border-color:rgba(255,255,255,.7);color:#fff}
+.btn-outline-white:hover{background:rgba(255,255,255,.12);border-color:#fff}
+.btn-outline-blue{background:#fff;border-color:var(--blue);color:var(--blue)}
+.btn-outline-blue:hover{background:var(--blue);color:#fff}
+
+/* ─── Section heading ───────────────────────────── */
+.section-heading{text-align:center;margin-bottom:40px}
+.section-heading h2{
+  font-size:clamp(20px,3vw,30px);font-weight:700;
+  color:var(--blue);margin-bottom:6px;
+}
+.section-heading .bar{
+  width:40px;height:3px;background:var(--red);
+  border-radius:2px;margin:10px auto;
+}
+.section-heading p{color:var(--muted);font-size:14px;max-width:580px;margin:0 auto}
+
+/* ─── Icon circle ───────────────────────────────── */
+.icon-circle{
+  width:56px;height:56px;border-radius:50%;
+  background:var(--blue);
+  display:flex;align-items:center;justify-content:center;
+  color:#fff;flex-shrink:0;
+}
+
+/* ─── Cards ─────────────────────────────────────── */
+.card{
+  background:#fff;border-radius:10px;
+  border:1px solid var(--border);
+  box-shadow:0 2px 14px rgba(0,0,0,.05);
+  transition:all .25s ease;
+}
+.card:hover{
+  transform:translateY(-4px);
+  box-shadow:0 10px 32px rgba(0,0,0,.1);
+  border-color:var(--red);
+}
+
+/* ─── Progress bar ──────────────────────────────── */
+.prog-track{background:#e4ecf4;border-radius:20px;height:7px;overflow:hidden}
+.prog-fill{
+  height:100%;border-radius:20px;
+  background:linear-gradient(90deg,var(--green),#5dd97a);
+  transition:width 1s ease;
+}
+
+/* ─── Animations ────────────────────────────────── */
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+@keyframes ticker{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+
+/* ─── Scrollbar ─────────────────────────────────── */
+::-webkit-scrollbar{width:5px}
+::-webkit-scrollbar-thumb{background:var(--blue);border-radius:3px}
+
+/* ─── Testimonial card animation ────────────────── */
+@keyframes fadeSlide {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ─── Global Scroll Reveal ───────────────────────── */
+.sr-ready {
+  opacity: 0;
+  transform: translateY(40px) scale(0.97);
+  transition: opacity 0.65s ease, transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+
+.sr-ready:nth-child(2) { transition-delay: 0.08s; }
+.sr-ready:nth-child(3) { transition-delay: 0.16s; }
+.sr-ready:nth-child(4) { transition-delay: 0.24s; }
+.sr-ready:nth-child(5) { transition-delay: 0.32s; }
+.sr-ready:nth-child(6) { transition-delay: 0.40s; }
+
+.sr-visible {
+  opacity: 1 !important;
+  transform: translateY(0) scale(1) !important;
+}
+
+/* Don't hide header or footer elements */
+header .sr-ready,
+footer .sr-ready,
+nav .sr-ready {
+  opacity: 1 !important;
+  transform: none !important;
+  transition: none !important;
+}
