@@ -9,8 +9,11 @@ const fs = require('fs')
 const connectDB = require('./config/db')
 
 // ─── Ensure storage dirs exist ─────────────────────────────────────────────────
-const storageDir = path.join(__dirname, 'storage')
-const tempDir    = path.join(storageDir, 'temp')
+// Use /tmp on production (Vercel serverless), local __dirname in development
+const storageDir = process.env.NODE_ENV === 'production'
+  ? '/tmp/storage'
+  : path.join(__dirname, 'storage')
+const tempDir = path.join(storageDir, 'temp')
 if (!fs.existsSync(storageDir)) fs.mkdirSync(storageDir, { recursive: true })
 if (!fs.existsSync(tempDir))    fs.mkdirSync(tempDir,    { recursive: true })
 
@@ -45,7 +48,7 @@ if (process.env.NODE_ENV === 'development') {
 }
 
 // ─── Static Files ─────────────────────────────────────────────────────────────
-app.use('/storage', express.static(path.join(__dirname, 'storage')))
+app.use('/storage', express.static(storageDir))
 
 // ─── API Routes ───────────────────────────────────────────────────────────────
 app.use('/api/v1/auth',              require('./routes/auth'))
